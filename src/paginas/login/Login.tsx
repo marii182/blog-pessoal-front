@@ -12,7 +12,7 @@ function Login() {
 
   const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
     {} as UsuarioLogin
-  );
+  ); // pega as informações que o usuário digita no navegador e envia para o backend
 
   const { usuario, handleLogin } = useContext(AuthContext);
 
@@ -24,16 +24,27 @@ function Login() {
     }
 }, [usuario])
 
-function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+function atualizarEstado(e: ChangeEvent<HTMLInputElement>) { //evento de mudança vindo do input HTML
   setUsuarioLogin({
-      ...usuarioLogin,
-      [e.target.name]: e.target.value
+      ...usuarioLogin, // spread operator (operador de espalhamento) - acessa o objeto usuario login e deixa visivel o seus atributos
+        /*
+                id: 0,
+                nome: "",
+                usuario: "root@root.com",
+                senha: "",
+                foto: "",
+                token: ""
+            */
+      [e.target.name]: e.target.value // input.name = usuario - target.value = o que o usuário digitou
   })
+
+  //console.log(`Email: ${usuarioLogin.usuario}`)
 }
 
 function login(e: ChangeEvent<HTMLFormElement>) {
   e.preventDefault()
   handleLogin(usuarioLogin)
+  
 }
 
   return (
