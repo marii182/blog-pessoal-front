@@ -9,9 +9,10 @@ function FormularioTema() {
 
   let navigate = useNavigate();
 
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>(); //Verifica se no url tem o parâmetro id.
 
-  const { usuario, handleLogout } = useContext(AuthContext);
+  const { usuario, handleLogout } = useContext(AuthContext); // contexto - local de armazenamento de informações
+  //.. funciona como um banco de dados, mas que se perde quando a aplicação é fechada
   const token = usuario.token;
 
   async function buscarPorId(id: string) {
