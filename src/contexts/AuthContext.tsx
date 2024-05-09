@@ -2,7 +2,8 @@ import { createContext, ReactNode, useState } from "react"
 
 import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
-
+import { toastAlerta } from "../util/toastAlerta"
+// import { toastAlerta } from "../utils/toastAlerta"
 
 interface AuthContextProps {
     usuario: UsuarioLogin
@@ -35,17 +36,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(true) // INDICA QUE ESTÁ HAVENDO ALGUM PROCESSAMENTO
         try {
             await login(`/usuarios/logar`, userLogin, setUsuario)
-            alert("Usuário logado com sucesso")
+            toastAlerta('Você precisa estar logado', 'info');
             setIsLoading(false)
 
         } catch (error) {
             console.log(error)
-            alert("Dados do usuário inconsistentes")
+            toastAlerta('Você precisa estar logado', 'info');
             setIsLoading(false)
         }
     }
 
-    //RESPONSÁVEL POR DESLOGAR O USUÁRIO REINICIANDO O ESTADO DE USUARIO LOGADO
+     //RESPONSÁVEL POR DESLOGAR O USUÁRIO REINICIANDO O ESTADO DE USUARIO LOGADO
     function handleLogout() {
         setUsuario({
             id: 0,

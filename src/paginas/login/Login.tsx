@@ -8,7 +8,7 @@ import UsuarioLogin from '../../models/UsuarioLogin';
 import { RotatingLines } from 'react-loader-spinner';
 
 function Login() {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
     {} as UsuarioLogin
@@ -27,24 +27,22 @@ function Login() {
 function atualizarEstado(e: ChangeEvent<HTMLInputElement>) { //evento de mudança vindo do input HTML
   setUsuarioLogin({
       ...usuarioLogin, // spread operator (operador de espalhamento) - acessa o objeto usuario login e deixa visivel o seus atributos
-        /*
-                id: 0,
-                nome: "",
-                usuario: "root@root.com",
-                senha: "",
-                foto: "",
-                token: ""
-            */
+      /*
+              id: 0,
+              nome: "",
+              usuario: "root@root.com",
+              senha: "",
+              foto: "",
+              token: ""
+          */
       [e.target.name]: e.target.value // input.name = usuario - target.value = o que o usuário digitou
   })
-
-  //console.log(`Email: ${usuarioLogin.usuario}`)
+    //console.log(`Email: ${usuarioLogin.usuario}`)
 }
 
 function login(e: ChangeEvent<HTMLFormElement>) {
   e.preventDefault()
   handleLogin(usuarioLogin)
-  
 }
 
   return (
